@@ -1,28 +1,32 @@
 require 'sketchup.rb'
 
-module Breton
+module JCB
   module SURay
 
-    def self.create_cube
-      model = Sketchup.active_model
-      model.start_operation('Create Cube', true)
-      group = model.active_entities.add_group
-      entities = group.entities
-      points = [
-        Geom::Point3d.new(0,   0,   0),
-        Geom::Point3d.new(1.m, 0,   0),
-        Geom::Point3d.new(5.m, 1.m, 0),
-        Geom::Point3d.new(0,   1.m, 0)
-      ]
-      face = entities.add_face(points)
-      face.pushpull(-1.m)
-      model.commit_operation
+    def self.test
+        model = Sketchup.active_model
+
+        source = Geom::Point3d.new(12,12,12)
+
+        i = 0
+        while i < 1000 do
+            dir = Geom::Vector3d.new(rand*(2)-1, rand*(2)-1, rand*(2)-1)
+            ray = [source, dir]
+            item = model.raytest(ray, false)
+
+            #puts dir
+
+            entities = model.active_entities
+            constline = entities.add_cline(source, item[0])
+            endofline = constline.end
+            i=i+1
+        end
     end
 
     unless file_loaded?(__FILE__)
       menu = UI.menu('Plugins')
       menu.add_item('Ray Test') {
-        self.create_cube
+        self.test
       }
       file_loaded(__FILE__)
     end
