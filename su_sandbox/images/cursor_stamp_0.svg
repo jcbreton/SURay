@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>cursor_stamp_0</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#BFBDA5" offset="0%"></stop>
+            <stop stop-color="#615F53" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="120.697835%" y1="50%" x2="31.8325591%" y2="86.9627591%" id="linearGradient-2">
+            <stop stop-color="#BFBDA5" offset="0%"></stop>
+            <stop stop-color="#A7A58E" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#BFBDA5" offset="0%"></stop>
+            <stop stop-color="#838170" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1-Icons-24x24" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="cursor_stamp_0" sketch:type="MSArtboardGroup">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(3.000000, 4.000000)">
+                <path d="M4.73820226,3.39662388 L4.87510053,4.67532785 L4.37016027,4.39637974 L2.26994054,5.75272042 L4.94877355,12.4484166 L7.78303079,12.9785854 L9.97738827,12.8058384 L12.0757769,11.5677316 L14.2473001,9.95572335 L13.5974911,9.17009626 L12.4998277,7.54087612 L11.2121654,5.19451032 L11.2955861,3.87065778 L10.8195119,3.32034738 L11.8270766,3.32034738 L13.6259263,5.45996094 L18.2928539,10.8681641 L16.0770623,11.6486119 L13.2437744,13.0377023 L11.1353688,13.8665946 L8.80314367,14.3302176 L6.19992245,14.7541853 L3.52733657,15.6011789 L0.0584573185,5.91573661 L2.18528119,4.98148019 L4.14149385,3.61729213 L4.73820226,3.39662388 Z" id="Path-8854" stroke="#000000" stroke-width="0.575" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup"></path>
+                <path d="M6.62505026,10.1112584 L10.9196275,8.85327148 C10.9196275,8.85327148 9.90640797,7.19035993 9.74732163,7.19035993 C9.58823529,7.19035993 6.5023696,8.05200195 6.5023696,8.05200195 L5.83392693,7.09106445 L5.1565444,7.32240513 L6.62505026,10.1112584 Z" id="Path-8853" stroke="#000000" stroke-width="0.575" fill="#989783" sketch:type="MSShapeGroup"></path>
+                <path d="M6.61395623,10.0927386 L4.96428366,12.4098598 L4.58837891,11.6873256 L3.87297507,9.79893276 L3.16274127,8.0168457 L2.2551844,5.77804129 L4.40344238,4.38706752 L4.58837891,4.45481655 L4.67761589,5.27104841 L5.7045683,7.16995675 L5.14458869,7.30890765 L6.61395623,10.0927386 Z" id="Path-8853" stroke="#000000" stroke-width="0.575" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup"></path>
+                <path d="M10.9528019,8.85044643 L14.1035623,9.87641253 L13.4262336,9.06190709 L12.4112908,7.40495954 L11.1430161,5.20497349 L11.0745132,6.92752511 L9.87463379,7.30482701 L10.9528019,8.85044643 Z" id="Path-8852" stroke="#000000" stroke-width="0.575" fill="#BFBDA5" sketch:type="MSShapeGroup"></path>
+                <path d="M10.9823142,8.8523298 L6.61201746,10.1310338 L4.96859203,12.4266532 L7.7701057,12.956822 L9.93882841,12.7909807 L12.0248305,11.5510951 L14.1731962,9.9803118 L10.9823142,8.8523298 Z" id="Path-8851" stroke="#000000" stroke-width="0.575" fill="url(#linearGradient-3)" sketch:type="MSShapeGroup"></path>
+                <path d="M5.1553596,7.33328683 L2.32024069,5.75669643" id="Path-8668" stroke="#000000" stroke-width="0.575" sketch:type="MSShapeGroup"></path>
+                <g id="house-copy" transform="translate(3.705882, 0.342857)" sketch:type="MSShapeGroup">
+                    <path d="M3.24070332,0.0828663724 L5.65437846,1.70474141 L7.71071398,4.00851294 L7.58569177,6.95010775 L2.81140597,8.16551724 L1.13037032,5.32553881 L0.880209274,2.62596982 L3.24070332,0.0828663724 L3.24070332,0.0828663724 Z" id="outline" stroke="#000000" stroke-width="0.575" fill="#BC310B"></path>
+                    <path d="M2.53838635,5.37920259 L0.762767683,2.46821121 L3.18693909,0.0192887931 L5.26426715,2.46821121 L2.53838635,5.37920259 L2.53838635,5.37920259 Z" id="Path-8847" stroke="#000000" stroke-width="0.3" fill="#BC310B"></path>
+                    <path d="M7.86011086,7.10495691 L2.87998156,8.44137931 L2.57010841,5.37273707 L5.29155745,2.46681034 L7.85241361,4.1856681" id="Path-8849" stroke="#000000" stroke-width="0.3"></path>
+                    <path d="M5.26444209,2.38044181 L7.25886086,3.61077011 L5.61035243,1.61804957 L3.93649471,0.528366832 L5.26444209,2.38044181 Z" id="Path-8671" stroke="#000000" stroke-width="0.3" fill="#BC310B"></path>
+                    <path d="M3.24070332,0.0828663724 L5.65437846,1.70474141 L7.71071398,4.00851294 L7.58569177,6.95010775 L2.81140597,8.16551724 L1.13037032,5.32553881 L0.880209274,2.62596982 L3.24070332,0.0828663724 L3.24070332,0.0828663724 Z" id="outline-copy" stroke="#000000" stroke-width="0.575"></path>
+                    <path d="M5.59827358,4.46896552 L5.61542563,5.86204908 L4.53469074,6.12413793 L4.48089568,4.72613182 L5.59827358,4.46896552" id="Fill-10019" fill="#A92C0A"></path>
+                    <path d="M5.71207945,5.79310345 L5.97369824,6.13970836 L4.61700189,6.45517241 L4.60031989,6.04758937 L5.71207945,5.79310345" id="Fill-10021" fill="#721F08"></path>
+                    <path d="M6.13505285,6.18080357 L4.43702608,6.58761161" id="Stroke-10023" stroke="#000000" stroke-width="0.5"></path>
+                    <path id="Stroke-10028" stroke="#000000" stroke-width="0.5" d="M4.88235294,4.46896552 L4.88235294,6.31138401"></path>
+                    <path d="M4.56324862,6.56551724 L4.54417355,4.62546503" id="Stroke-10097" stroke="#000000" stroke-width="0.5"></path>
+                    <path d="M4.48089568,4.8 L6.11464557,4.4892113" id="Stroke-10100" stroke="#000000" stroke-width="0.5"></path>
+                    <path id="Fill-10020" stroke="#3F4348" d="M5.75371351,5.88626857 L5.73484983,4.52731649 L6.02106321,4.46896552 L6.03341034,6.23448276 L5.75371351,5.88626857"></path>
+                    <path d="M5.89411803,4.65714264 L5.89411803,6.35714245" id="Path-7936" stroke="#000000" stroke-width="0.5"></path>
+                    <path d="M1.20792165,2.91635023 L2.58903952,5.00912367 L2.79957491,7.25047411 L1.41357422,5.34185246 L1.20792165,2.91635023 Z" id="Path-2691"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

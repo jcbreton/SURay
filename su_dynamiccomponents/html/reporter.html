@@ -1,0 +1,388 @@
+<!--
+Copyright:: Copyright 2012, Trimble Navigation Limited
+License:: All Rights Reserved.
+Original Author:: Scott Shattuck
+-->
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=5">
+<title>Generate Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="../js/dcbridge.js" 
+    type="text/javascript" language="JavaScript"></script>
+
+<style>
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-image:url("../images/bg.gif");
+}
+
+body,div,input,textarea,p,blockquote,th,td {  
+  font-family: arial,helvetica,clean,sans-serif;
+}
+
+body,div,td {
+	font-size: 12px;
+}
+
+#background{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow: auto;
+  overflow-x: hidden;    /* webkit */
+  background-color: white;
+}
+
+#header { 
+  background-image:url(../images/tabs.gif);
+  background-position: 0px -127px;
+  background-repeat: repeat-x;
+  background-color: #e2ded7;
+  border: none;
+  border-bottom: 1px solid gray;
+  
+}
+
+#header > div {
+  margin: 0px 12px 0px 6px;
+}
+#header-spacer { 
+  clear: left;
+  height: 6px;
+}
+
+#content {
+  position: relative;
+  width: 100%;
+  border: 1px solid white;
+  clear: left;
+  padding: 20px;
+  padding-top: 26px;
+  padding-left: 36px;
+}
+
+#content > div {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 23px;
+  line-height: 19px;
+  
+  vertical-align: middle;
+  text-align: center;
+  
+  border-top: 1px solid gray;
+  background-image:url(../images/tabs.gif);
+  background-position: 0px -100px;
+  background-repeat: repeat-x;
+  background-color: #e2ded7;
+  padding-top:3px;
+}
+
+/*
+---------------
+Reporter Section
+---------------
+*/
+#reporter-header { 
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-image:url(../images/tabs.gif);
+  background-position: 0px -127px;
+  background-repeat: repeat-x;
+  background-color: #e2ded7;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  padding: 2px;
+  cursor: default;
+}
+#reporter-icon {
+  float: left;
+  padding-right: 0px;
+  margin-right: 6px;
+  background-image:url("../images/icons.gif");
+  background-repeat: no-repeat;
+  background-position: -801px 2px;
+  width: 46px;
+  height: 38px;
+  cursor: default;
+}
+#reporter-head {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 19px;
+  padding-top: 3px;
+  
+  cursor: default;
+}
+.reporter-list {
+  font-weight: bold;
+  cursor: pointer;
+}
+.reporter-description {
+  padding: 3px;
+  cursor: default;
+}
+#reporter-welcome {
+  font-size: 12px;
+  padding-bottom: 4px;
+}
+#reporter-offline-msg {
+  padding: 10px;
+  max-width: 600px;
+  margin-left: 20px;
+}
+#reporter-buttons { 
+  padding-left: 0px;
+  padding-top: 80px;
+}
+.reporter-button { 
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 22px;
+  margin-bottom: 8px;
+  margin-right: 20px;
+  width: 150px;
+}
+.reporter-radio {
+  
+  border-top: 6px solid white;
+}
+
+.reporter-summary {
+  padding-left: 8px;
+  cursor: default;
+  width: 80%;
+}
+</style>
+
+<!--[if IE]>
+<style>
+
+BODY {
+  background-image: none;
+  background-color: threedface;
+}
+
+#background {
+  overflow: auto;
+}
+
+/* simulated child selector for IE */
+#header {
+
+}
+#header div {
+  
+}
+#header * div {
+  
+}
+#header-spacer { 
+  
+}
+
+/* simulated child selector for IE */
+#content {
+  position: relative;
+  width: 100%;
+  border-top: 1px solid #aaa;
+  padding-left: 20px;
+}
+#content div {
+  
+}
+#content * div {
+  margin: 0px;
+}
+#footer {
+  background-image:url(../images/tabs.gif);
+  background-position: 0px -100px;
+  background-repeat: repeat-x;
+  background-color: #e2ded7;
+  border:none;
+  border-top: 1px solid white;
+  padding-top:3px;
+  height: 28px;
+}
+
+/*
+---------------
+Reporter Section
+---------------
+*/
+.reporter-button { 
+  background-image:url(../images/tabs.gif);
+  background-position: 0px -104px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 22px;
+  margin-bottom: 6px;
+}
+
+#reporter-header { 
+  padding: 6px;
+}
+#reporter-icon {
+
+}
+#reporter-head {
+  font-weight: bold;
+  line-height: 19px;
+  padding-top: 3px;
+  padding-bottom: 1px;
+  cursor: default;
+}
+
+.reporter-description {
+  
+}
+#reporter-welcome {
+
+}
+.reporter-summary {
+  padding-left: 33px;
+}
+.reporter-radio {
+  width: 30px;
+}
+#reporter-buttons { 
+  text-align: center;
+  padding-top: 50px;
+}
+.reporter-button { 
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 22px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+}
+
+</style>
+<![endif]-->
+<script>
+
+/**
+ * The global reporter namespace, containing functions specific to the
+ * Generate Report panel.
+ * @type {Object}
+ */
+var rpt = {};
+
+/**
+ * Makes a generate report call based on which report the user has selected.
+ * @param {string} fileType Either XML or CSV
+ */
+rpt.doReport = function(fileType) {
+  var reportType = 'generateModel';
+  if ($('report-selection').checked == true) {
+    reportType = 'generateSelection';
+  }
+  skp.sendAction(reportType + fileType + ':')
+};
+
+/**
+ * Localizes the reporter UI at load time.
+ */
+rpt.translateStrings = function() {
+
+  su.setContent('reporter-head', 
+    su.translateString('Select a report to generate below.'));
+
+  var welcome = su.translateString('Visit the <a href=DC_HELP_URL>' +
+      'SketchUp Help Center</a> for more information.')
+  welcome = welcome.replace(/DC_HELP_URL/gi,
+      'skp:do_open_url@url=' + su.info['dc_help_url']);
+
+  su.setContent('reporter-welcome', welcome);
+  su.setContent('reporter-list-all', 
+      su.translateString('All model attributes'));
+  su.setContent('reporter-summary-all', 
+      su.translateString('Saves a file with all of the ' +
+      'attributes contained in your model.'));
+  su.setContent('reporter-list-selection',
+      su.translateString('Current selection attributes'));
+  su.setContent('reporter-summary-selection',
+      su.translateString('Saves a file containing the attributes only ' +
+      'in your current SketchUp selection.'));
+
+  $('reporter-xml-button').value = su.translateString('Generate HTML file');
+  $('reporter-csv-button').value = su.translateString('Generate CSV file');
+
+  su.ifOffline('rpt.ifOffline');
+};
+
+/**
+ * Sets up the offline message.
+ */
+rpt.ifOffline = function() {
+  var offlineMsg = 'It looks like you are currently offline. To use the ' +
+      'updated version of Generate Report, please connect to the Internet. ' +
+      'Otherwise, you can continue to use the old version of Generate ' +
+      'Report. If you reconnected to the Internet, click ' +
+      '<a href=DC_ONLINE_URL>here</a> to refresh this page.';
+  offlineMsg = su.translateString(offlineMsg);
+  offlineMsg = offlineMsg.replace(/DC_ONLINE_URL/gi, su.info['dc_online_url']);
+
+  su.setContent('reporter-offline-msg', offlineMsg);
+};
+
+</script>
+</head>
+
+<body onselectstart="return false;" oncontextmenu="return false;" onload="su.init('rpt.translateStrings')">
+<form>
+<div id="background">
+
+<div id="reporter-header">
+  <div id="reporter-icon"></div>
+  <div id="reporter-head"></div>
+  <div id="reporter-welcome"></div>
+  <div id="reporter-offline-msg"></div>
+</div>
+
+<div id="content">
+
+  <input type="radio" name="reports" id="report-model" class="reporter-radio" value="1" checked>
+  <span id="reporter-list-all" class="reporter-list" onclick="$('report-model').checked=true"></span>
+  <div id="reporter-summary-all" class="reporter-summary"></div>
+  
+  <br><input type="radio" name="reports" id="report-selection" class="reporter-radio" value="2">
+  <span id="reporter-list-selection" class="reporter-list" onclick="$('report-selection').checked=true"></span>
+  <div id="reporter-summary-selection" class="reporter-summary"></div>
+
+  <div id="reporter-buttons">
+    <input type="button" class="reporter-button" value=""
+      id="reporter-xml-button" onclick="rpt.doReport('XML')"/>
+    <input type="button" class="reporter-button" value="" 
+      id="reporter-csv-button" onclick="rpt.doReport('CSV')"/>
+  </div>
+  
+</div>
+<div id="footer">
+
+</div>
+ 
+</div>
+</form>
+</body>
+</html>

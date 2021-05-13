@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>cursor_cmove</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="cursor_cmove" sketch:type="MSArtboardGroup" transform="translate(0.000000, 0.000000)">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(8.000000, 3.000000)">
+                <path d="M0.752807627,11.4976857 L4.41076661,17.8228756 L8.0687256,11.4976857 L6.48841531,11.4978109 L6.48841525,9.74621581 L2.2709145,9.74596553 L2.27091456,11.4976857 L0.752807627,11.4976857 Z" id="Stroke-24677-Copy" stroke="#9B9B9B" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M0.752807627,1.95172024 L4.41076661,8.27691007 L8.0687256,1.95172024 L6.48841531,1.95184538 L6.48841525,0.200250319 L2.2709145,0.200000048 L2.27091456,1.95172026 L0.752807627,1.95172024 Z" id="Stroke-24677-Copy-2" stroke="#9B9B9B" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup" transform="translate(4.410767, 4.238455) rotate(-180.000000) translate(-4.410767, -4.238455) "></path>
+                <path d="M3.234375,6.00010034 L3.234375,7.21875 L5.53125,7.21875 L5.53125,6" id="Stroke-24670" stroke="#FFFFFF" stroke-width="1.50000156" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M3.234375,11.953125 L3.234375,10.734375 L5.53125,10.734375 L5.53125,11.9529996" id="Stroke-24671" stroke="#FFFFFF" stroke-width="1.50000156" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M5.55479973,6.04668741 L6.703125,6.04678746 L4.40620012,2.015625 L2.109375,6.046875 L3.25770027,6.04678746" id="Stroke-24672" stroke="#FFFFFF" stroke-width="1.50000156" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M3.25785303,12.0002501 L2.109375,12.0001251 L4.40643081,16.03125 L6.703125,12 L5.55482155,12.0001251" id="Stroke-24673" stroke="#FFFFFF" stroke-width="1.50000156" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M5.55479973,6.04955229 L6.703125,6.04967744 L4.40620012,2.015625 L2.109375,6.04980259 L3.25770027,6.04967744 L3.25770027,7.265625 L5.55479973,7.265625 L5.55479973,6.04955229 L5.55479973,6.04955229 Z" id="Fill-24674" fill="#FB0011" sketch:type="MSShapeGroup"></path>
+                <path d="M5.55479973,6.04959748 L6.703125,6.0496976 L4.40620012,2.015625 L2.109375,6.0497852 L3.25770027,6.0496976 L3.25770027,7.265625 L5.55479973,7.265625 L5.55479973,6.04959748 L5.55479973,6.04959748 Z" id="Stroke-24675" stroke="#000000" stroke-width="0.500000521" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M3.25785303,11.9504477 L2.109375,11.9503226 L4.40643081,15.984375 L6.703125,11.9501974 L5.55482155,11.9503226 L5.55482155,10.734375 L3.25785303,10.734375 L3.25785303,11.9504477 L3.25785303,11.9504477 Z" id="Fill-24676" fill="#FB0011" sketch:type="MSShapeGroup"></path>
+                <path d="M3.25785303,11.9504477 L2.109375,11.9503226 L4.40643081,15.984375 L6.703125,11.9501974 L5.55482155,11.9503226 L5.55482155,10.734375 L3.25785303,10.734375 L3.25785303,11.9504477 L3.25785303,11.9504477 Z" id="Stroke-24677" stroke="#000000" stroke-width="0.500000521" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

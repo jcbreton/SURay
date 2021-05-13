@@ -1,0 +1,614 @@
+<!--
+Copyright:: Copyright 2008 Google Inc.
+License:: All Rights Reserved.
+Original Author:: Scott Shattuck (mailto:idearat@google.com)
+-->
+<html>
+<head>
+<title>su.js unit tests</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="file:///home/build/nonconf/google3/third_party/java/jsunit/jsunit2.2/css/jsUnitStyle.css">
+<script type="text/javascript" src="file:///home/build/nonconf/google3/third_party/java/jsunit/jsunit2.2/app/jsUnitCore.js"></script>
+
+<style>
+#page_name {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  width: 300px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border: 1px solid black;
+}
+</style>
+
+<script src="sketchup.js" 
+    type="text/javascript" language="JavaScript"></script>
+
+<script type="text/javascript" language="JavaScript">
+
+//  ---
+//  Setup/Teardown
+//  ---
+
+function setUp() {
+  su.testdata = {};
+  su.testdata['ifAbsentHash'] = {'foo': 1};
+  su.testdata['entity'] = {
+    'id': 'parent',
+    'attributeDictionaries': {'dict': {'attr': {'name': 'parent'}}},
+    'subentities': [
+      {'id': 'child1', 
+        'attributeDictionaries': {'dict': {'attr': {'name': 'child1',
+        'subentities': []}}}},
+      {'id': 'child2', 
+        'attributeDictionaries': {'dict': {'attr': {'name': 'child2'}}}}
+    ]
+  }
+  su.strings = {'hello':'aloha','goodbye':'aloha'}
+  su.rubyLastCall_ = null;
+}
+
+function tearDown() { 
+  su.testdata = null;
+}
+
+/**
+ * Holds all locations passed to the su.setLocation call overwritten
+ * below to mock up actual window.location updates. Note that the data in the
+ * resulting Array can be queried as part of the test functions.
+ * @type {Array}
+ */
+su.locations = [];
+
+/**
+ * A simple helper for log/location tests.
+ * @return {Object?} The object in the Array's last slot.
+ */
+Array.prototype.last = function() {
+  return this[this.length-1];
+};
+
+/**
+ * Replaces su.setLocation step with an intercept which simply tracks
+ * the URIs being invoked for reference and testing.
+ */
+su.setLocation = function(url) {
+  su.locations.push(url);
+};
+
+/**
+ * Confirms that a log entry matching a particular string was made.
+ */
+su.confirmLog = function(aString) {
+
+  var dat = su.getRubyData_();
+  if (dat == null) {
+    return false;
+  };
+
+  var req = dat['request'];
+  if (req == null) {
+    return false;
+  };
+
+  var msg = req['message'];
+  if (msg === undefined) {
+    return false;
+  };
+  return msg.indexOf(aString) == 0 && msg.length == aString.length;
+};
+
+//  ---
+//  Prerequisites
+//  ---
+
+function testSketchupIsMac() {
+  var mac = navigator.userAgent.indexOf('Mac') != -1;
+  mac ? assertTrue(su.IS_MAC) : assertFalse(su.IS_MAC);
+}
+
+function testNode() {
+  assertNotNull(window.Node);
+}
+
+function testSketchupEscapeKey() {
+  assertNotNull(su.ESCAPE_KEY);
+}
+
+function testSketchupTabKey() {
+  assertNotNull(su.TAB_KEY);
+}
+
+function testSketchupEnterKey() {
+  assertNotNull(su.ENTER_KEY);
+}
+
+//  ---
+//  Logging/Debugging
+//  ---
+
+function testSketchupLog() {
+  su.log('this is a test');
+  assertTrue(su.confirmLog('this is a test'));
+}
+
+function testSketchupNotify() {
+  su.notify('this is a test', 'test_window');
+  var win = window.open('', 'test_window');
+  if (win == null) {
+    //  popups likely blocked. feign success 
+    return;
+  }
+  var doc = win.document;
+  assertNotNull(doc);
+  var html = doc.body.innerHTML;
+  assertNotNull(html);
+  assertTrue(/this is a test/.test(html));
+}
+
+function testSketchupRaise() {
+  try {
+    //  should log and throw
+    su.raise('raise test');
+    fail();
+  } catch (e) {
+    //  throw should have put us here. if we can confirm the log entry was
+    //  made then we succeeded 
+    assertTrue(su.confirmLog('raise test'));
+  }
+}
+
+function testOnerror() {
+  var alerted = null;
+  window.$original_alert = window.alert;
+  window.alert = function(msg) {
+      alerted = msg;
+      // Uncomment the line below if you really want to see an alert. It's
+      // commented out by default so the unit tests run without interruption.
+      //window.$original_alert(msg);  
+    };
+
+  window.onerror('this is a test', 'http://localhost', 123);
+  assertTrue(alerted.indexOf('this is a test') != -1);
+  window.alert = window.$original_alert;
+  window.$original_alert = null;
+}
+
+//  ---
+//  Object Testing
+//  ---
+
+function testAddIfAbsent() {
+  var hash = su.testdata.ifAbsentHash;
+  su.addIfAbsent(hash, 'foo', 12);
+  assertEquals(1, hash['foo']);
+  su.addIfAbsent(hash, 'bar', 12);
+  assertEquals(12, hash['bar']);
+}
+
+function testCanCall() {
+  assertTrue(su.canCall(su, 'canCall'));
+  assertFalse(su.canCall(su, 'respondsTo'));
+}
+
+function testIfAbsent() {
+  var hash = su.testdata.ifAbsentHash;
+  var test = su.ifAbsent(hash, 'foo', 12);
+  assertEquals(1, test);
+  test = su.ifAbsent(hash, 'bar', 12);
+  assertEquals(12, test);
+}
+
+function testIfEmpty() {
+  assertEquals('foo', su.ifEmpty(null, 'foo'));
+  assertEquals('foo', su.ifEmpty(undefined, 'foo'));
+  assertEquals('foo', su.ifEmpty('', 'foo'));
+  assertEquals('bar', su.ifEmpty('bar', 'foo'));
+  assertEquals(0, su.ifEmpty(0, 'foo'));
+  assertEquals('foo', su.ifEmpty([], 'foo'));
+  assertNotEquals('foo', su.ifEmpty({}, 'foo'));
+}
+
+function testIfUndefined() {
+  assertNull(su.ifUndefined(null, 'foo'));
+  assertEquals('foo', su.ifUndefined(undefined, 'foo'));
+  assertEquals('', su.ifUndefined('', 'foo'));
+  assertEquals('bar', su.ifUndefined('bar', 'foo'));
+  assertEquals(0, su.ifUndefined(0, 'foo'));
+  assertNotEquals('foo', su.ifUndefined([], 'foo'));
+  assertNotEquals('foo', su.ifUndefined({}, 'foo'));
+}
+
+function testIsDefined() {
+  assertTrue(su.isDefined(null));
+  assertFalse(su.isDefined(undefined));
+  assertTrue(su.isDefined(''));
+  assertTrue(su.isDefined('bar'));
+  assertTrue(su.isDefined(0));
+  assertTrue(su.isDefined([]));
+  assertTrue(su.isDefined({}));
+}
+
+function testIsEmpty() {
+  assertTrue(su.isEmpty(null));
+  assertTrue(su.isEmpty(undefined));
+  assertTrue(su.isEmpty(''));
+  assertFalse(su.isEmpty('bar'));
+  assertFalse(su.isEmpty(0));
+  assertTrue(su.isEmpty([]));
+  assertFalse(su.isEmpty({}));
+}
+
+function testIsFunction() {
+  assertTrue(su.isFunction(su.isFunction));
+  re = new RegExp('test');
+  assertFalse(su.isFunction(re));
+}
+
+function testIsMarkup() {
+  assertTrue(su.isMarkup('<foo/>'));
+  assertTrue(su.isMarkup('<foo></foo>'));
+  assertTrue(su.isMarkup('\t<foo></foo> '));
+  assertFalse(su.isMarkup('<foo'));
+  assertFalse(su.isMarkup('foo>'));
+
+  assertFalse(su.isMarkup(null));
+  assertFalse(su.isMarkup(undefined));
+  assertFalse(su.isMarkup(''));
+  assertFalse(su.isMarkup('bar'));
+  assertFalse(su.isMarkup(0));
+  assertFalse(su.isMarkup([]));
+  assertFalse(su.isMarkup({}));
+}
+
+function testIsNull() {
+  assertTrue(su.isNull(null));
+  assertFalse(su.isNull(undefined));
+  assertFalse(su.isNull(''));
+  assertFalse(su.isNull('bar'));
+  assertFalse(su.isNull(0));
+  assertFalse(su.isNull([]));
+  assertFalse(su.isNull({}));
+}
+
+function testIsNumber() {
+  assertTrue('zero', su.isNumber(0));
+  assertFalse('nan', su.isNumber(NaN));
+  assertFalse('null', su.isNumber(null));
+  assertFalse('undefined', su.isNumber(undefined));
+  assertFalse('empty string', su.isNumber(''));
+  assertFalse('bar', su.isNumber('bar'));
+  assertFalse('[]', su.isNumber([]));
+  assertFalse('{}', su.isNumber({}));
+}
+
+function testIsString() {
+  assertTrue(su.isString(''));
+  assertTrue(su.isString('bar'));
+  assertFalse(su.isString(0));
+  assertFalse(su.isString(null));
+  assertFalse(su.isString(undefined));
+  assertFalse(su.isString([]));
+  assertFalse(su.isString({}));
+}
+
+function testIsValid() {
+  assertFalse(su.isValid(null));
+  assertFalse(su.isValid(undefined));
+  assertTrue(su.isValid(''));
+  assertTrue(su.isValid('bar'));
+  assertTrue(su.isValid(0));
+  assertTrue(su.isValid([]));
+  assertTrue(su.isValid({}));
+}
+
+function testIsVisible() {
+  assertTrue(su.isVisible('page_name'));
+  assertFalse(su.isVisible('display_none'));
+  assertFalse(su.isVisible('visibility_hidden'));
+}
+
+function testNotEmpty() {
+  assertFalse(su.notEmpty(null));
+  assertFalse(su.notEmpty(undefined));
+  assertFalse(su.notEmpty(''));
+  assertTrue(su.notEmpty('bar'));
+  assertTrue(su.notEmpty(0));
+  assertFalse(su.notEmpty([]));
+  assertTrue(su.notEmpty({}));
+}
+
+function testNotValid() {
+  assertTrue(su.notValid(null));
+  assertTrue(su.notValid(undefined));
+  assertFalse(su.notValid(''));
+  assertFalse(su.notValid('bar'));
+  assertFalse(su.notValid(0));
+  assertFalse(su.notValid([]));
+  assertFalse(su.notValid({}));
+}
+
+//  ---
+//  Attribute Management
+//  ---
+
+function testGetAttribute() {
+  var entity = su.testdata.entity;
+  var attr = su.getAttribute(entity, 'dict', 'attr');
+  assertTrue(attr['name'] == 'parent');
+}
+
+function testHasAttribute() {
+  var entity = su.testdata.entity;
+  assertTrue(su.hasAttribute(entity, 'dict', 'attr'));
+  assertFalse(su.hasAttribute(entity, 'dict', 'name'));
+}
+
+function testRemoveAttribute() {
+  var entity = su.testdata.entity;
+  su.removeAttribute(entity, 'dict', 'attr');
+  assertFalse(su.hasAttribute(entity, 'dict', 'attr'));
+}
+
+function testSetAttribute() {
+  var entity = su.testdata.entity;
+  su.setAttribute(entity, 'dict', 'attr', 'foo', 'bar');
+  var attr = su.getAttribute(entity, 'dict', 'attr');
+  assertTrue(attr['foo'] == 'bar');
+}
+
+//  ---
+//  Content Management
+//  ---
+
+function testGetContent() {
+  assertEquals('su.js unit tests', su.getContent('page_name'));
+}
+
+function testSetContent() {
+  su.setContent('page_name', 'sketchup_test.html');
+  assertEquals('sketchup_test.html', su.getContent('page_name'));
+}
+
+//  ---
+//  Dynamic CSS
+//  ---
+
+function testAddStylesheet() {
+  su.addStylesheet(document, 'sketchup_test.css');
+  setTimeout(function() {
+      assertEquals('red', $('page_name').style.color);
+    }, 10);
+}
+
+//  ---
+//  Dynamic HTML
+//  ---
+
+function testDisable() {
+  su.disable('page_name');
+  assertTrue($('page_name').disabled);
+}
+
+function testElementHeight() {
+  assertEquals(26, su.elementHeight('page_name'));
+}
+
+function testElementWidth() {
+  assertEquals(302, su.elementWidth('page_name'));
+}
+
+function testElementX() {
+  assertEquals(100, su.elementX('page_name'));
+}
+
+function testElementY() {
+  assertEquals(50, su.elementY('page_name'));
+}
+
+function testEnable() {
+  su.disable('page_name');
+  assertTrue($('page_name').disabled);
+  su.enable('page_name');
+  assertFalse($('page_name').disabled);
+}
+
+function testHide() {
+  su.hide('page_name');
+  assertFalse(su.isVisible('page_name'));
+}
+
+function testShow() {
+  su.hide('page_name');
+  assertFalse(su.isVisible('page_name'));
+  su.show('page_name');
+  assertTrue(su.isVisible('page_name'));
+}
+
+function testStorePosition() {
+  su.storePosition_('page_name');
+  assertTrue($('page_name').x == 100);
+  assertTrue($('page_name').y == 50);
+  assertTrue($('page_name').w == 302);
+  assertTrue($('page_name').h == 26);
+  try { 
+    assertNull(su.storePosition_('not_found'));
+  } catch (e) {
+  }
+}
+
+//  ---
+//  Entity Management
+//  ---
+
+function testFindEntity() {
+  var entity = su.testdata.entity;
+  assertNotNull(su.findEntity('child1', entity));
+  assertUndefined(su.findEntity('child', entity));
+}
+
+function testFindEntityParent() {
+  var entity = su.testdata.entity;
+  assertNotNull(su.findEntityParent('child1', entity));
+  assertUndefined(su.findEntityParent('child', entity));
+}
+
+//  ---
+//  Formatting/Translation
+//  ---
+
+function testEscapeHTML() {
+  assertEquals('&lt;test attr=&quot;who&apos;s there?&quot;/&gt;',
+    su.escapeHTML('<test attr="who\'s there?"/>'));
+}
+
+function testFormatLength() {
+  su.formatLength();
+  assert(/^pull_format_length_/.test(su.rubyLastCall_));
+}
+
+function testPullTranslationsSuccess() {
+  //  callback after ruby file access to a translation dictionary. could
+  //  reproduce in mock but that wouldn't be valuable in terms of QA.
+}
+
+function testTranslateString() {
+  assertEquals('aloha', su.translateString('hello'));
+  assertEquals('not found', su.translateString('not found'));
+}
+
+function testUnescapeHTML() {
+  assertEquals('<test attr="who\'s there?"/>',
+    su.unescapeHTML(
+    '&lt;test attr=&quot;who&apos;s there?&quot;/&gt;'));
+}
+
+function testUrlEncode() {
+  assertEquals('http%3A//www.su.com' + 
+    '%3Ftest%3Dtrue%26attr%3D1%2B2%26name%3Da%20or%20b',
+    su.urlEncode(
+    'http://www.su.com?test=true&attr=1+2&name=a or b'));
+}
+
+function testCreateQueryString() {
+  assertEquals('hello=aloha&goodbye=aloha',
+    su.createQueryString(su.strings));
+}
+
+//  ---
+//  Ruby/JavaScript "Bridge"
+//  ---
+
+function testSketchupRubyFault() {
+  assertNotNull(su.RUBY_FAULT);
+}
+
+function testSketchupRubyQuery() {
+  assertNotNull(su.RUBY_QUERY);
+}
+
+function testSketchupRubyQueryId() {
+  assertNotNull(su.RUBY_QUERY_ID);
+}
+
+function testSketchupRubyResponse() {
+  assertNotNull(su.RUBY_RESPONSE);
+}
+
+function testSketchupRubyCallData() {
+  assertNotNull(su.rubyCallData_);
+}
+
+function testRubyLastCall() {
+  assertNull(su.rubyLastCall_);
+  //  logging forces a ruby call to occur, which should make the last call
+  //  equal to js_log 
+  su.log('this is a test');
+  assert(/^js_log_/.test(su.rubyLastCall_));
+}
+
+function testCallRuby() {
+  var params = {param1:'foo', param2:'bar'};
+  su.callRuby('test', params);
+  var queryid = su.rubyLastCall_;
+  assertEquals(params, su.getRubyData_(queryid, su.RUBY_REQUEST));
+}
+
+function testClearRubyData() {
+  var params = {param1:'foo', param2:'bar'};
+  su.callRuby('test', params);
+  var queryid = su.rubyLastCall_;
+  assertEquals(params, su.getRubyData_(queryid, su.RUBY_REQUEST));
+  su.clearRubyData_();
+  assertNotNull(su.rubyLastCall_);
+  queryid = su.rubyLastCall_;
+  assert(su.notValid(su.getRubyData_('query', queryid, su.RUBY_QUERY)));
+  assert(su.notValid(su.getRubyData_('query id', queryid, su.RUBY_QUERY_ID)));
+  assert(su.notValid(su.getRubyData_('fault', queryid, su.RUBY_FAULT)));
+  assert(su.notValid(su.getRubyData_('request', queryid, su.RUBY_REQUEST)));
+  assert(su.notValid(su.getRubyData_('response', queryid, su.RUBY_RESPONSE)));
+}
+
+function testGetRubyData() {
+  var params = {param1:'foo', param2:'bar'};
+  su.callRuby('test', params);
+  var queryid = su.rubyLastCall_;
+  assertEquals(params, su.getRubyData_(queryid, su.RUBY_REQUEST));
+}
+
+function testGetRubyFault() {
+  su.setRubyFault_('test', 'test fault');
+  assertEquals('test fault', su.getRubyFault('test'));
+}
+
+function testGetRubyQuery() {
+  su.setRubyQuery_('test', 'test query');
+  assertEquals('test query', su.getRubyQuery('test'));
+}
+
+function testGetRubyResponse() {
+  su.setRubyResponse_('test', 'test response');
+  assertEquals('test response', su.getRubyResponse('test'));
+}
+
+function testRubyCallback() {
+  //  invoked from the Ruby side during round-trip calls. manually invoking
+  //  here to simulate that
+  su.rubyCallback_('su.log','test');
+  assertTrue(su.confirmLog('test'));
+}
+
+function testSetRubyData() {
+  su.setRubyData_('test', su.RUBY_QUERY, 'test query');
+  assertEquals('test query',
+    su.getRubyData_('test', su.RUBY_QUERY));
+}
+
+function testSetRubyFault() {
+  su.setRubyFault_('test', 'test fault');
+  assertEquals('test fault', su.getRubyFault('test'));
+}
+
+function testSetRubyQuery() {
+  su.setRubyQuery_('test', 'test query');
+  assertEquals('test query', su.getRubyQuery('test'));
+}
+
+function testSetRubyResponse() {
+  su.setRubyResponse_('test', 'test response');
+  assertEquals('test response', su.getRubyResponse('test'));
+}
+
+</script>
+
+</head>
+<body>
+  <span id="page_name">su.js unit tests</span>
+  <span id="display_none" style="display:none">display none</span>
+  <span id="visibility_hidden" style="visibility:hidden">visibility hidden</span>
+</body>
+</html>
+

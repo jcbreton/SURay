@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>cursor_adddetail</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="cursor_adddetail" sketch:type="MSArtboardGroup" stroke="#000000">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(2.000000, 2.000000)">
+                <path d="M18.046875,9 L13,9" id="Stroke-12639" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8,10" sketch:type="MSShapeGroup"></path>
+                <path d="M13.6900001,7.87536621 L13.6900001,10.1118164 L11.25,9 L13.6900001,7.87536621 Z" id="Stroke-12641" fill="#000000" sketch:type="MSShapeGroup"></path>
+                <path d="M0,0 L7,7" id="Stroke-12642" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8,10" sketch:type="MSShapeGroup"></path>
+                <path d="M4.56408691,6.21013607 L6.13763383,4.67000008 L7.00408697,7 L4.56408691,6.21013607 Z" id="Stroke-12644" fill="#000000" sketch:type="MSShapeGroup"></path>
+                <path d="M0,18.046875 L7,11" id="Stroke-12645" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8,10" sketch:type="MSShapeGroup"></path>
+                <path d="M6.1809082,13.3255615 L4.56408691,11.800293 L7,11 L6.1809082,13.3255615 Z" id="Stroke-12647" fill="#000000" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

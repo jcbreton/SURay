@@ -1,0 +1,183 @@
+/**
+Copyright:: Copyright 2012, Trimble Navigation Limited
+License:: All Rights Reserved.
+Original Author:: Scott Shattuck
+*/
+
+body {
+  background-image: none;
+  background-color: threedface;
+  height: 100%;
+  width: 100%;
+}
+
+#background {
+  overflow: auto;
+  border-bottom: 0 solid #aaa;
+  height: 100%;
+}
+
+/* simulated child selector for IE */
+#header {
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -127px;
+  background-repeat: repeat-x;
+  background-color: #e2ded7;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  padding: 6px;
+  border: none;
+}
+#header div {
+  margin: 0;
+}
+#header * div {
+  margin: 0;
+}
+#header-spacer { 
+  position: absolute;
+  height: 0;
+}
+
+/* simulated child selector for IE */
+#content {
+  position: relative;
+  width: 100%;
+  border-top: 1px solid #aaa;
+  padding: 12px;
+}
+#content div {
+  margin: 6px;
+}
+#content * div {
+  margin: 0;
+}
+
+#footer {
+  position: absolute;
+  border: none;
+  border-top: 1px solid white;
+  padding-top: 3px;
+  width: 100%;
+  height: 30px;
+  bottom: 0;
+  background-image: none;
+}
+
+.no-selection-head {
+  font-size: 11px;
+  padding: 6px 9px 6px 9px;
+  font-weight: bold;
+  border-top: none;
+  font-weight: bold;
+}
+
+.no-selection-content {
+  border-top: 1px solid white;
+}
+
+#config-image {
+  padding-right: 9px;
+}
+
+#config-subhead {
+  padding-bottom: 0;
+}
+
+#config-options {
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -129px;
+  background-repeat: repeat-x;
+  background-color: #e2ded7;
+  padding: 6px;
+  border: 1px solid #aaa;
+  border-top: 1px solid #bbb;
+  border-left: 1px solid #bbb;
+}
+
+#config-description {
+  font-size: 12px;
+  padding-bottom: 3px;
+}
+
+.config-button {
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -104px;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 22px;
+  margin: 0;
+}
+
+.reporter-button { 
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -104px;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 22px;
+  margin-bottom: 6px;
+  width: 100px;
+}
+
+#reporter-header { 
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -127px;
+  background-repeat: repeat-x;
+  background-color: #e2ded7;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  padding: 12px 6px 6px 6px;
+  cursor: default;
+}
+
+#reporter-icon {
+  float: left;
+  padding-right: 0;
+  margin-right: 6px;
+  background-image: url("../images/icons.gif");
+  background-repeat: no-repeat;
+  background-position: -800px 0x;
+  width: 56px;
+  height: 45px;
+  cursor: default;
+}
+
+#reporter-head {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 19px;
+  padding-top: 3px;
+  padding-bottom: 1px;
+  cursor: default;
+}
+
+#reporter-subhead {
+  font-size: 15px;
+  cursor: default;
+}
+
+.reporter-list {
+  background-image: url("../images/report-arrow.gif");
+  background-repeat: no-repeat;
+  background-position: 20px 0;
+  float: left;
+  padding: 0;
+  margin: 0;
+  width: 130px;
+  cursor: default;
+}
+
+.reporter-description {
+  padding: 3px 0 6px 0;
+  cursor: default;
+}
+
+#reporter-welcome {
+  font-size: 18px;
+  padding-bottom: 12px;
+}
+

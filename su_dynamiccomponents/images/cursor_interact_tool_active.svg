@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>cursor_interact_tool_active</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="cursor_interact_tool_active" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-461" fill-opacity="0" fill="#424242" sketch:type="MSShapeGroup" x="0" y="0" width="24" height="24"></rect>
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(4.000000, 3.000000)">
+                <g id="Burst" sketch:type="MSShapeGroup">
+                    <path d="M5.515625,3.65625 L6.921875,2.25" id="Stroke-1304" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M5.515625,6.375 L6.921875,7.78125" id="Stroke-1306" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M2.65625,6.375 L1.25,7.78125" id="Stroke-1308" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M2.65625,3.65625 L1.25,2.25" id="Stroke-1310" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M1.859375,5.0390625 C1.859375,3.7846057 2.87834579,2.765625 4.1328125,2.765625 C5.38726672,2.765625 6.40625,3.7846057 6.40625,5.0390625 C6.40625,6.29364422 5.38726672,7.3125 4.1328125,7.3125 C2.87834579,7.3125 1.859375,6.29364422 1.859375,5.0390625 L1.859375,5.0390625 Z" id="Fill-1311" fill-opacity="0.7294" fill="#FDF800"></path>
+                    <path d="M5.515625,3.65625 L6.921875,2.25" id="Stroke-1313" stroke-opacity="0.7255" stroke="#FBF52E" stroke-width="1.25" stroke-linecap="round"></path>
+                    <path d="M5.515625,6.375 L6.921875,7.78125" id="Stroke-1315" stroke-opacity="0.7255" stroke="#FBF52E" stroke-width="1.25" stroke-linecap="round"></path>
+                    <path d="M2.65625,6.375 L1.25,7.78125" id="Stroke-1317" stroke-opacity="0.7255" stroke="#FBF52E" stroke-width="1.25" stroke-linecap="round"></path>
+                    <path d="M2.65625,3.65625 L1.25,2.25" id="Stroke-1319" stroke-opacity="0.7255" stroke="#FBF52E" stroke-width="1.25" stroke-linecap="round"></path>
+                    <path d="M4.109375,3 L4.109375,0.752441406" id="Stroke-1320" stroke="#000000" stroke-width="0.5" stroke-linecap="round"></path>
+                    <path d="M5.515625,3.65625 L6.921875,2.25" id="Stroke-1321" stroke="#000000" stroke-width="0.5" stroke-linecap="round"></path>
+                    <path d="M5.515625,6.375 L6.921875,7.78125" id="Stroke-1323" stroke="#000000" stroke-width="0.5" stroke-linecap="round"></path>
+                    <path d="M4.1144375,6.984375 L4.109375,9" id="Stroke-1324" stroke="#000000" stroke-width="0.5" stroke-linecap="round"></path>
+                    <path d="M2.65625,6.375 L1.25,7.78125" id="Stroke-1325" stroke="#000000" stroke-width="0.5" stroke-linecap="round"></path>
+                    <path d="M2.140625,5.0206875 L0.125,5.015625" id="Stroke-1326" stroke="#000000" stroke-width="0.5" stroke-linecap="round"></path>
+                    <path d="M2.65625,3.65625 L1.25,2.25" id="Stroke-1327" stroke="#000000" stroke-width="0.5" stroke-linecap="round"></path>
+                </g>
+                <path d="M7.2318596,6.4887535 C6.53580954,5.83052613 5.61525455,5.00767418 5.04657216,4.68808113 C4.03636468,4.12048082 2.88097708,4.89767007 4.34000015,6.21337434 C5.73429306,7.52895377 7.08077873,8.74417019 7.60182707,9.8852378 C8.12272564,11.0263054 8.6603988,12.3370165 4.90132964,12.2666126 C3.48790785,12.4342588 3.78460848,14.0679041 5.68486792,13.8428363 C8.24610128,13.5396251 8.27303549,16.0201146 10.7735483,15.4517653 C10.7735483,15.4517653 12.4844196,16.288748 12.7999992,17.203125 L16.3999996,14 C16.3999996,14 16,14 15,12 C14,10 15,11 14,9 C13,7 13,7 12,6 C11,5 11,6 11,6 C11,6 11.1614294,5.64842922 10,5.30000019 C9,5 8,6 8,6" id="Stroke-15648-Copy" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                <g id="HandStrokeOutline" transform="translate(3.000000, 4.000000)" stroke="#FFFFFF" stroke-width="1.25" sketch:type="MSShapeGroup" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.0625,9.828125 C11.5636869,8.45547794 10.9105569,4.57058763 9.93463991,2.96376325 C8.95864795,1.35681371 8.66488497,1.15242485 7.625,1.59224265" id="Stroke-1329"></path>
+                    <path d="M8.375,2.796875 C8.375,2.796875 7.23533806,0.0318942275 5.609375,1.58051486" id="Stroke-1331"></path>
+                    <path d="M6.640625,2.46875 C6.02082311,1.82298773 5.34958131,0.982626203 4.109375,2.39577528" id="Stroke-1333"></path>
+                    <path d="M5.03673307,3.27098892 C5.03673307,3.27098892 2.91616467,1.11518127 1.90596069,0.547456131 C0.895756713,-0.020144181 -0.259651838,0.757045074 1.16701993,2.07274934 C2.59369169,3.3884536 3.94016021,4.60342036 4.46118178,5.7446128 C4.98211598,6.88568042 5.51974984,8.1963915 1.76068123,8.12611242 C0.347301786,8.29363378 0.644001386,9.9272791 2.54425424,9.70221128 C5.10547871,9.39887529 5.13246275,11.8794896 7.63289202,11.3111403 C7.63289202,11.3111403 9.34375737,12.148123 9.40625,13.0625" id="Stroke-1335"></path>
+                </g>
+                <g id="HandStroke" transform="translate(3.000000, 4.000000)" stroke="#000000" stroke-width="0.5" sketch:type="MSShapeGroup" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.203125,9.921875 C11.7042925,8.549219 11.0511346,4.66430339 10.0752131,3.05746855 C9.09920414,1.45050855 8.80552724,1.24624352 7.765625,1.68593902" id="Stroke-15642"></path>
+                    <path d="M8.515625,2.9375 C8.515625,2.9375 7.37597928,0.172409163 5.75,1.72123233" id="Stroke-15644"></path>
+                    <path d="M6.78125,2.609375 C6.16142941,1.96361273 5.49023116,1.1232512 4.25,2.53640028" id="Stroke-15646"></path>
+                    <path d="M5.1773554,3.41161392 C5.1773554,3.41161392 3.05677964,1.25580627 2.04657216,0.688081131 C1.03636468,0.120480819 -0.119022918,0.897670074 1.30765379,2.21337434 C2.73429306,3.52895377 4.08077873,4.74417019 4.60182707,5.8852378 C5.12272564,7.02630542 5.6603988,8.3370165 1.90132964,8.26661259 C0.487907849,8.43425878 0.784608478,10.0679041 2.68486792,9.84283628 C5.24610128,9.53962512 5.27303549,12.0201146 7.77354831,11.4517653 C7.77354831,11.4517653 9.48441959,12.288748 9.546875,13.203125" id="Stroke-15648"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

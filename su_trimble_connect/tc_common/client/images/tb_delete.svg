@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g fill="none" fill-rule="evenodd" transform="translate(7 6)">
+    <polyline fill="#363545" points="12.753 6.661 12.753 15.886 12.114 15.886 12.114 6.661 12.753 6.661"/>
+    <polyline fill="#363545" points="9.558 6.661 9.558 15.886 8.919 15.886 8.919 6.661 9.558 6.661"/>
+    <polyline fill="#363545" points="6.363 6.661 6.363 15.886 5.724 15.886 5.724 6.661 6.363 6.661"/>
+    <polygon fill="#363545" points=".612 3.241 17.865 3.241 17.865 4.491 .612 4.491"/>
+    <polyline stroke="#363545" stroke-width="1.278" points="2.529 4.491 2.529 17.4 3.807 19.336 14.67 19.336 15.948 17.4 15.948 4.491"/>
+    <polyline stroke="#363545" stroke-width="1.278" points="5.112 3.882 7.002 .618 11.475 .618 13.461 3.887"/>
+  </g>
+</svg>

@@ -1,0 +1,86 @@
+<!--
+Copyright:: Copyright 2012, Trimble Navigation Limited
+License:: All Rights Reserved.
+Original Author:: Scott Shattuck
+-->
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=5">
+<title>Manage Attributes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- import baseline style and optional IE overrides -->
+<link href="../css/sketchup.css"
+    rel="stylesheet" type="text/css" media="screen, projection"/>
+<link href="../css/manager.css"
+    rel="stylesheet" type="text/css" media="screen, projection"/>
+<!--[if IE]>
+<link href="../css/manager_ie.css"
+    rel="stylesheet" type="text/css" media="screen, projection"/>
+<![endif]-->
+
+<script src="../js/dcbridge.js"
+    type="text/javascript" language="JavaScript"></script>
+<script src="../js/converter.js" 
+    type="text/javascript" language="JavaScript"></script>
+<script src="../js/components.js"
+    type="text/javascript" language="JavaScript"></script>
+<script src="../js/functions.js"
+    type="text/javascript" language="JavaScript"></script>
+<script src="../js/manager.js"
+    type="text/javascript" language="JavaScript"></script>
+
+<script type="text/javascript" language="JavaScript">
+function init() {
+  mgr.init();
+}
+</script>
+
+</head>
+<body
+  oncontextmenu="return false" onload="init()" onresize="mgr.handleResize()">
+  <div id="message-panel"></div>
+  <div id="tab-panel">
+    <span id="top-buttons">
+      <span id="refresh-button" class="refresh-button"
+          title="Refresh"
+          onclick="mgr.doRefresh()">&nbsp;</span>
+      <span id="settings-button" class="settings-button"
+          title="Toggle Formula View"
+          onclick="mgr.toggleFormulaView()">&nbsp;</span>
+    </span>
+    <span id="tab-basic" class="tab-selected"
+      onclick="mgr.setTab('basic')"><span id="icon-details">&nbsp;</span><span id="tab-basic-title">Info</span></span><span id="tab-cap-basic" class="tab-cap-selected">&nbsp;</span>
+    <span id="tab-functions" class="tab" onclick="mgr.setTab('functions')"><span id="icon-functions">&nbsp;</span><span id="tab-function-title">Functions</span></span><span id="tab-cap-functions" class="tab-cap" >&nbsp;</span>
+  </div>
+
+  <div id="functions-panel"></div>
+  <div id="formdesign-panel"></div>
+
+  <div id="inspector-panel">
+
+    <div id="header">
+      <table id="header-table" cellspacing="0">
+        <tr>
+          <td id="mgr-icon">&nbsp;</td>
+          <td id="mgr-status"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="scroll-panel">
+      <div id="content" onclick="mgr.doPending(event)"></div>
+      <div id="extras"></div>
+    </div>
+
+    <div id="details-panel" class="details-panel">
+    </div>
+
+    <div id="footer">
+    </div>
+
+  </div>
+
+</body>
+</html>
+

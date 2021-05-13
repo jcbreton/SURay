@@ -1,0 +1,63 @@
+/**
+Copyright:: Copyright 2012, Trimble Navigation Limited
+License:: All Rights Reserved.
+Original Author:: Scott Shattuck
+*/
+
+/* Google CSS baseline */
+@import "goog.css";
+@import "gui-base.css";
+@import "gui-ratio.css";
+@import "gui-fixed.css";
+
+/* reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {  margin:0; padding:0; } 
+table { border-collapse:collapse; border-spacing:0; } 
+fieldset,img {  border:0; } 
+address,caption,cite,code,dfn,em,strong,th,var { font-style:normal; font-weight:normal; } 
+ol,ul { list-style:none; } 
+caption,th { text-align:left; } 
+h1,h2,h3,h4,h5,h6 { font-size:100%; font-weight:normal; } 
+q:before,q:after { content:''; } 
+abbr,acronym { border:0; } 
+
+/* fonts */
+body {font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
+table {font-size:inherit;font:100%;}
+pre,code,kbd,samp,tt {font-family:monospace;*font-size:108%;line-height:100%;}
+
+
+html,body {
+  background-color: threedface;
+  overflow: hidden;
+}
+
+h1,h2 {
+  font-weight: bold;
+}
+
+table {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+div {
+  width: 100%;
+  height: 100%;
+}
+
+#background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  background-color: red;
+}
+

@@ -1,0 +1,245 @@
+#curtain {
+  filter: alpha(opacity='10');
+}
+
+#inspector-panel {
+  bottom: auto;
+  /* height adjusted in updateLayout() */
+}
+
+#footer {
+  bottom: 0px;
+}
+
+#scroll-panel {
+  bottom: auto;
+  /* height adjusted in updateLayout() */
+  overflow: auto;
+  overflow-y: scroll;
+  /* This inexplicably fixes a strange repositioning bug on IE 
+  border: 1px solid white;*/
+}
+
+#message-panel {
+  background-color: threedface;
+  background-image: none;
+}
+
+.list-group {
+  background-color: white;
+}
+
+#details-panel {
+  right: auto;
+  bottom: auto;
+  /* width adjusted in updateLayout() */
+  /* height adjusted in updateLayout() */
+}
+
+#details-sub-panel {
+  top: 4px;
+  right: auto;
+  bottom: auto;
+  /* width adjusted in updateLayout() */
+  /* height adjusted in updateLayout() */
+}
+
+.details-footer {
+  bottom: 24px;
+  left: 0;
+  width: 100%;
+}
+
+.no-selection-head {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.edit-field {
+  padding-top: 1px;
+  padding-left: 5px;
+  padding-right: 4px;
+  padding-bottom: 6px;
+}
+
+#edit-field-reference-tab {
+  left: 2px;
+}
+
+.tree-leaf-visible {
+  height: auto;
+  overflow: visible;
+
+} 
+ 
+.tree-leaf-collapsed {
+  overflow: hidden;
+}
+
+.attribute-table {
+  border-right: 1px solid #999999;
+}
+     
+.attribute-table-wrapper {
+  width: 100%;
+}
+
+.attribute-head-visible {
+  background-position: 0 -40px;
+}
+
+.attribute-head-collapsed {
+  background-position: 0 0;
+}
+
+.attribute-head-text {
+  height: 22px;
+}
+.add-attribute-link {
+   padding-top: 0; 
+}
+
+#header-table {
+  padding-top: 2px;
+}
+
+.submit-button {
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -104px;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 22px;
+  margin: 0;
+  font-size: 13px;
+}
+
+#tab-panel {
+  background-image: url(../images/tabs.gif);
+  height: 28px;
+  cursor: default;
+}
+
+.tab {
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -56px;
+  height: 28px;
+  padding: 9px 6px 0 10px;
+  cursor: pointer;
+}
+
+.tab-selected {
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -28px;
+  height: 28px;
+  padding: 9px 6px 0 9px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tab-cap {
+  background-image: url(../images/tabs.gif);
+  background-position: right -56px;
+  height: 28px;
+  padding: 1px;
+  cursor: default;
+}
+
+.tab-cap-selected {
+  background-image: url(../images/tabs.gif);
+  background-position: right -28px;
+  height: 28px;
+  padding: 1px;
+  cursor: default;
+}
+
+#functions-panel {
+  position: absolute;
+  background-color: threedface;
+  z-index: 80;
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -84px;
+  height: 44px;
+  width: 100%;
+  visibility: hidden;
+  padding: 0 3px 0 3px;
+}
+
+#formdesign-panel {
+  position: absolute;
+  z-index: 80;
+  background-image: url(../images/tabs.gif);
+  background-position: 0 -129px;
+  background-repeat: no-repeat;
+  background-color: #e2ded7;
+  height: 9000px;
+  width: 100%;
+  visibility: hidden;
+}
+
+#icon-details {
+  background-image: url("../images/buttons.gif");
+  background-position: 0 -1630px
+  width: 15px;
+  padding: 0 0 0 16px;
+}
+
+#icon-functions {
+  background-image: url("../images/buttons.gif");
+  background-position: 0 -1600px
+  width: 15px;
+  padding: 0 0 0 16px;
+}
+
+#icon-formdesign {
+  background-image: url("../images/buttons.gif");
+  background-position: 0 -1660px
+  width: 15px;
+  padding: 0 0 0 16px;
+}
+
+.function-list-item {
+  font-size: 7px;
+  background-color: #e2ded7;
+}
+
+.function-list-head {
+  font-family: serif;
+  font-size: 7px;
+  font-weight: bold;
+  background-color: #6e94f5;
+  padding: 3px;
+  color: white;
+}
+
+#function-list {
+  width: 100%;
+}
+
+#function-summary {
+  padding-left: 3px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 15px;
+  vertical-align: top;
+}
+
+#function-summary-table {
+  border: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#function-insert-cell {
+  vertical-align: top;
+  text-align: right;
+  white-space: nowrap;
+}
+
+#help-button {
+  padding: 6px 6px 0 6px;
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  top: -6px;
+}
