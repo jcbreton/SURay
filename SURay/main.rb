@@ -11,7 +11,7 @@ module Breton
       points = [
         Geom::Point3d.new(0,   0,   0),
         Geom::Point3d.new(1.m, 0,   0),
-        Geom::Point3d.new(1.m, 1.m, 0),
+        Geom::Point3d.new(5.m, 1.m, 0),
         Geom::Point3d.new(0,   1.m, 0)
       ]
       face = entities.add_face(points)
