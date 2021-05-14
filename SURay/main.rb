@@ -15,7 +15,7 @@ module JCB
     def self.test
         model = Sketchup.active_model
 
-        s = Source.new("Test Source",Geom::Point3d.new(72,275,75),1)
+        s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
 
         i = 0
         maxOrder = 10
