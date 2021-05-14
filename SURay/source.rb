@@ -10,7 +10,7 @@ class Source
 
     def shootRay()
         direction = Geom::Vector3d.new(rand*(2)-1, rand*(2)-1, rand*(2)-1)
-        return [self.getStrengthAtDirection(direction),direction]
+        return [[@position,direction],self.getStrengthAtDirection(direction)]
     end
 
     def getStrengthAtDirection(dir)

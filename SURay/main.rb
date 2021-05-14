@@ -1,29 +1,85 @@
 require 'sketchup.rb'
 require_relative 'source.rb'
+require_relative 'vector_math.rb'
 
 module JCB
   module SURay
 
+    def scalar_multiply(scalar, vector)
+      new_x = scalar*vector.x
+      new_y = scalar*vector.y
+      new_z = scalar*vector.z
+      return Geom::Vector3d.new(new_x,new_y,new_z)
+    end
+
     def self.test
         model = Sketchup.active_model
 
-        s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
-        s.getInfo() 
-        puts s.shootRay
+        s = Source.new("Test Source",Geom::Point3d.new(72,275,75),1)
 
-        # i = 0
-        # while i < 1000 do
-        #     dir = Geom::Vector3d.new(rand*(2)-1, rand*(2)-1, rand*(2)-1)
-        #     ray = [source, dir]
-        #     item = model.raytest(ray, false)
+        i = 0
+        maxOrder = 10
+        num_rays = 100
 
-        #     #puts dir
+        while i < num_rays do
+            order = 0 
+            initial_ray = s.shootRay(); 
+            ray = initial_ray[0]
 
-        #     entities = model.active_entities
-        #     constline = entities.add_cline(source, item[0])
-        #     endofline = constline.end
-        #     i=i+1
-        # end
+            entities = model.active_entities
+
+            last_position = ray[0]
+            last_direction = ray[1]
+
+            while order < maxOrder do 
+              ray_result = model.raytest(ray,false); 
+
+              obj_idx = 0; 
+
+              # check this...
+              if !((ray_result[1])[obj_idx].is_a? Sketchup::Face)
+                if(ray_result[1][obj_idx].is_a? Sketchup::ConstructionLine)
+                  while (obj_idx < ray_result[1].length())
+                    ray = [ray_result[0],ray[1]]
+                    ray_result = model.raytest(ray,false)
+
+                    if(ray_result[1][obj_idx].is_a? Sketchup::Face)
+
+                    else
+                      break 
+                    end
+
+                  end
+                else
+
+                  break
+                end 
+              end
+
+              puts "------"
+              puts ray_result[1][obj_idx]
+              
+              # continue ray path if intersect a construction line
+              # while (ray_result[1])[obj_idx].is_a? Sketchup::ConstructionLine
+              #   ray = [ray_result[0],ray[1]]
+              #   ray_result = model.raytest(ray,false)
+              # end
+              
+              raypath = entities.add_cline(last_position, ray_result[0]); 
+
+              surface_normal = (ray_result[1])[obj_idx].normal()
+              reflect_direction = last_direction - Vector_Math.scalar_multiply(2*(last_direction.dot(surface_normal)),surface_normal)
+              
+              order = order+1
+              last_position = ray_result[0]
+              last_direction = reflect_direction 
+
+              ray = [last_position,reflect_direction]
+            end
+
+            i=i+1
+        end
+
     end
 
     unless file_loaded?(__FILE__)
