@@ -5,11 +5,20 @@ require_relative 'vector_math.rb'
 module JCB
   module SURay
 
-    def scalar_multiply(scalar, vector)
-      new_x = scalar*vector.x
-      new_y = scalar*vector.y
-      new_z = scalar*vector.z
-      return Geom::Vector3d.new(new_x,new_y,new_z)
+    def self.is_face(ray_result)
+      if ray_result[1][0].is_a? Sketchup::Face 
+        return true
+      else
+        return false         
+      end
+    end
+
+    def self.is_cline(ray_result)
+      if ray_result[1][0].is_a? Sketchup::ConstructionLine
+        return true
+      else
+        return false
+      end
     end
 
     def self.test
@@ -34,40 +43,24 @@ module JCB
             while order < maxOrder do 
               ray_result = model.raytest(ray,false); 
 
-              obj_idx = 0; 
+              if self.is_face(ray_result)
 
-              # check this...
-              if !((ray_result[1])[obj_idx].is_a? Sketchup::Face)
-                if(ray_result[1][obj_idx].is_a? Sketchup::ConstructionLine)
-                  while (obj_idx < ray_result[1].length())
-                    ray = [ray_result[0],ray[1]]
-                    ray_result = model.raytest(ray,false)
-
-                    if(ray_result[1][obj_idx].is_a? Sketchup::Face)
-
-                    else
-                      break 
-                    end
-
+              else
+                puts "trip"
+                if(self.is_cline(ray_result))
+                  while self.is_cline(ray_result) && !(self.is_face(ray_result)) do 
+                    ray = [ray_result[0], ray[1]]
+                    ray_result = model.raytest(ray,false);
                   end
+                  puts "fix"
                 else
-
-                  break
-                end 
+                  break 
+                end
               end
-
-              puts "------"
-              puts ray_result[1][obj_idx]
-              
-              # continue ray path if intersect a construction line
-              # while (ray_result[1])[obj_idx].is_a? Sketchup::ConstructionLine
-              #   ray = [ray_result[0],ray[1]]
-              #   ray_result = model.raytest(ray,false)
-              # end
-              
+             
               raypath = entities.add_cline(last_position, ray_result[0]); 
 
-              surface_normal = (ray_result[1])[obj_idx].normal()
+              surface_normal = (ray_result[1])[0].normal()
               reflect_direction = last_direction - Vector_Math.scalar_multiply(2*(last_direction.dot(surface_normal)),surface_normal)
               
               order = order+1
