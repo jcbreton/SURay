@@ -1,6 +1,7 @@
 require 'sketchup.rb'
-require_relative 'source.rb'
-require_relative 'vector_math.rb'
+require_relative 'objects/source.rb'
+require_relative 'objects/receiver.rb'
+require_relative 'util/vector_math.rb'
 
 module JCB
   module SURay
@@ -21,14 +22,21 @@ module JCB
       end
     end
 
+    def self.test1
+
+    end
+
     def self.test
         model = Sketchup.active_model
 
         s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
+        r = Receiver.new("Test Radius",Geom::Point3d.new(28*12,22*12,20),24)
 
         i = 0
         maxOrder = 10
         num_rays = 100
+
+        int = 0
 
         while i < num_rays do
             order = 0 
@@ -46,19 +54,23 @@ module JCB
               if self.is_face(ray_result)
 
               else
-                puts "trip"
                 if(self.is_cline(ray_result))
                   while self.is_cline(ray_result) && !(self.is_face(ray_result)) do 
                     ray = [ray_result[0], ray[1]]
                     ray_result = model.raytest(ray,false);
                   end
-                  puts "fix"
                 else
                   break 
                 end
               end
              
               raypath = entities.add_cline(last_position, ray_result[0]); 
+
+              if r.check_intersection(last_position,ray[1])
+                puts "INTERSECTION DETECTED. Ray #{i}, Order #{order}"
+                puts "Enter in Anything to Continue..."
+                int = int+1
+              end
 
               surface_normal = (ray_result[1])[0].normal()
               reflect_direction = last_direction - Vector_Math.scalar_multiply(2*(last_direction.dot(surface_normal)),surface_normal)
@@ -69,9 +81,10 @@ module JCB
 
               ray = [last_position,reflect_direction]
             end
-
             i=i+1
         end
+
+        puts "TOTAL INTERSECTIONS: #{int}"
 
     end
 
