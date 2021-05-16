@@ -2,6 +2,7 @@ require 'sketchup.rb'
 require_relative 'objects/source.rb'
 require_relative 'objects/receiver.rb'
 require_relative 'util/vector_math.rb'
+require_relative 'compute/raytracer.rb'
 
 module JCB
   module SURay
@@ -22,15 +23,27 @@ module JCB
       end
     end
 
-    def self.test1
+    def self.test
+      model = Sketchup.active_model
+      s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
+      r = Receiver.new("Test Radius",Geom::Point3d.new(28*12,22*12,20),24)
 
+      raytracer = Raytracer.new(model, s, r)
+      
+      t1 = Time.now
+      
+      raytracer.find_definite(1000)
+      
+      t2 = Time.now
+      delta = t2 - t1 
+      puts "Operation took #{delta} seconds."
     end
 
-    def self.test
+    def self.test1
         model = Sketchup.active_model
 
         s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
-        r = Receiver.new("Test Radius",Geom::Point3d.new(28*12,22*12,20),24)
+        r = Receiver.new("Test Radius",Geom::Point3d.new(15*12,12*12,20),12)
 
         i = 0
         maxOrder = 10
