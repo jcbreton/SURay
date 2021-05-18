@@ -3,6 +3,10 @@ require_relative 'objects/source.rb'
 require_relative 'objects/receiver.rb'
 require_relative 'util/vector_math.rb'
 require_relative 'compute/raytracer.rb'
+require_relative 'objects/room.rb'
+require_relative 'objects/material.rb'
+require_relative 'objects/layer.rb'
+require_relative 'objects/raypath.rb'
 
 module JCB
   module SURay
@@ -24,19 +28,34 @@ module JCB
     end
 
     def self.test
+
       model = Sketchup.active_model
+
+      gypsum = Material.new("gypsum",0,[0.1,0.1,0.1,0.05,0.04,0.03,0.02],"me")
+      carpet = Material.new("carpet",1,[0.4,0.4,0.5,0.6,0.7,0.7,0.7],"me")
+
+      walls = Layer.new("walls",gypsum)
+      floor = Layer.new("floor",carpet)
+
+      room = Room.new(model,[walls,floor])
       s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
       r = Receiver.new("Test Radius",Geom::Point3d.new(28*12,22*12,20),24)
 
-      raytracer = Raytracer.new(model, s, r)
+      raytracer = Raytracer.new(room, s, r)
       
       t1 = Time.now
       
-      raytracer.find_definite(1000)
+      c = raytracer.find_definite(100)
       
       t2 = Time.now
       delta = t2 - t1 
       puts "Operation took #{delta} seconds."
+
+      c.each do |c| 
+        puts "----"
+        c.getInfo
+      end
+      
     end
 
     def self.test1
