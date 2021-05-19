@@ -1,7 +1,11 @@
 require 'sketchup.rb'
+require_relative 'util/wavefile.rb'
+include WaveFile 
+
 require_relative 'objects/source.rb'
 require_relative 'objects/receiver.rb'
 require_relative 'util/vector_math.rb'
+require_relative 'util/audio_math.rb'
 require_relative 'compute/raytracer.rb'
 require_relative 'objects/room.rb'
 require_relative 'objects/material.rb'
@@ -38,24 +42,49 @@ module JCB
       floor = Layer.new("floor",carpet)
 
       room = Room.new(model,[walls,floor])
-      s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
-      r = Receiver.new("Test Radius",Geom::Point3d.new(28*12,22*12,20),24)
+      
+      #Shoebox
+      #s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
+      #r = Receiver.new("Test Radius",Geom::Point3d.new(14*12,10*12,20),12)
+
+      #Auditorium
+      s = Source.new("Test Source",Geom::Point3d.new(1.68*39.37,(6.39)*39.37,39.37),1)
+      r = Receiver.new("Test Radius",Geom::Point3d.new(17*39.37,12*39.37,2*39.37),12)
 
       raytracer = Raytracer.new(room, s, r)
       
       t1 = Time.now
       
-      c = raytracer.find_definite(100)
+      c = raytracer.find_definite(1000)
       
       t2 = Time.now
       delta = t2 - t1 
       puts "Operation took #{delta} seconds."
 
+      c.sort! { |a,b| a.arrivalTime(343) <=> b.arrivalTime(343)}
+      #c.sort_by(&:arrivalTime(343))
+
+
+      # Write IR
+      fs = 44100 
+      irdata = Array.new((c[-1].arrivalTime(343)*fs).floor)
+      irdata.fill(0)
+
+      puts "---- Impulse Response Data ----"
       c.each do |c| 
-        puts "----"
+        #puts "----"
         c.getInfo
+        #c.plot()
+        irdata[(c.arrivalTime(343)*fs).floor()] = Audio_Math.coinflip()*c.arrivalEnergy(1,1000)
       end
-      
+
+      irdata = Audio_Math.normalize(irdata)
+
+      path = "C:/Users/Jack Breton/Desktop/test.wav"
+      buffer = Buffer.new(irdata, Format.new(:mono, :float, 44100))
+      Writer.new(path, Format.new(:mono, :pcm_16, 44100)) do |writer|
+        writer.write(buffer)
+      end
     end
 
     def self.test1

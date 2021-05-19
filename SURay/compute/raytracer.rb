@@ -19,7 +19,12 @@ class Raytracer
 
         while(i<rays)
             dir = Geom::Vector3d.new(rand*(2)-1, rand*(2)-1, rand*(2)-1)
-            path = traceRay(@source.getPosition(),dir,0,50,Raypath.new())
+
+            init_path = Raypath.new()
+            source_int = Intersection.new(@source.getPosition(), false) 
+            init_path.add_segment(source_int)
+
+            path = traceRay(@source.getPosition(),dir,0,50,init_path)
             if(path!=false)
                 puts "found ray...#{i}"
                 raypaths.push(path)
@@ -34,6 +39,13 @@ class Raytracer
 
     def traceRay(origin, direction, order, maxOrder, chain)
         if (@receiver.check_intersection(origin,direction))
+            t = @receiver.returnDistanceToIntersection(origin, direction)
+
+            receiver_intersection_point = origin + Vector_Math.scalar_multiply(t.min(),direction)
+            final_int = Intersection.new(receiver_intersection_point,false)
+
+            chain.add_segment(final_int)
+
             return chain
         else
             if(order >= maxOrder)
