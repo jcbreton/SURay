@@ -1,7 +1,7 @@
 class Intersection 
     def initialize(point, layer)
        @point = point
-       @layer = layer  
+       @layer = layer  # assign false if intersection is with source or receiver
     end
 
     def getLayer()
