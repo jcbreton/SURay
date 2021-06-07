@@ -56,4 +56,10 @@ class Raypath
         e = self.arrivalEnergy(1,1000)
         puts "Arrival Time: #{self.arrivalTime(343)}, Arrival Energy: #{e} (#{10*Math.log10(e)}), Order: #{self.getOrder()}"
     end
+
+    def printIntersections()
+        @intersections.each do |i|
+            puts i.getPoint()
+        end
+    end
 end

@@ -10,9 +10,13 @@ class Receiver
 
     # ray math
     def check_intersection(ray_origin, ray_direction) 
-        
         # sphere intersection check 
+       
+        # does NOT check for surfaces in between ray_origin point and receiver
+        # surface checking is completed in traceRay(...) function
+        
         # see Architectural Acoustics (2nd edition) by Marshall Long pg 885 
+
         x1 = (ray_direction.dot(ray_origin-@position))**2 
         x2 = (ray_direction.dot(ray_direction))*((ray_origin-@position).dot(ray_origin-@position)-(@radius**2))
         discriminant = x1-x2
@@ -36,7 +40,7 @@ class Receiver
         numeratorPlus = -ray_direction.dot(ray_origin-@position) + Math.sqrt(discriminant)
         numeratorMinus = -ray_direction.dot(ray_origin-@position) - Math.sqrt(discriminant)
 
-        return [(numeratorPlus/(ray_direction.dot(ray_direction))), (numeratorMinus/(ray_direction.dot(ray_direction)))]
+        return [(numeratorPlus/(ray_direction.dot(ray_direction))).abs(), (numeratorMinus/(ray_direction.dot(ray_direction))).abs()]
     end
 
     # setters and getters

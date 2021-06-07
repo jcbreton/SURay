@@ -24,7 +24,7 @@ class Raytracer
             source_int = Intersection.new(@source.getPosition(), false) 
             init_path.add_segment(source_int)
 
-            path = traceRay(@source.getPosition(),dir,0,50,init_path)
+            path = traceRay(@source.getPosition(),dir,0,15,init_path)
             if(path!=false)
                 puts "found ray...#{i}"
                 raypaths.push(path)
@@ -38,7 +38,7 @@ class Raytracer
     end
 
     def traceRay(origin, direction, order, maxOrder, chain)
-        if (@receiver.check_intersection(origin,direction))
+        if (self.valid_receiver_intersection(origin,direction))
             t = @receiver.returnDistanceToIntersection(origin, direction)
 
             receiver_intersection_point = origin + Vector_Math.scalar_multiply(t.min(),direction)
@@ -53,28 +53,12 @@ class Raytracer
                 # puts "Failed... (max order)"
                 return false 
             else
-                ray = [origin, direction]
-                ray_result = @model.raytest(ray)
 
-                if ray_result.nil?
-                    # puts "Failed... Nil Class" 
-                    return false 
-                end 
+                ray_result = self.surface_raytest(origin,direction)
 
-                if !(ray_result.nil?)&&(ray_result[1][0].is_a? Sketchup::Face)
-                    # OK... continue
-                else
-                    if(ray_result[1][0].is_a? Sketchup::ConstructionLine)
-                        while(ray_result[1][0].is_a? Sketchup::ConstructionLine) do
-                            ray = [ray_result[0], ray[1]]
-                            ray_result = @model.raytest(ray,false);
-                        end
-                    else
-                        # abort 
-                        # puts "Failed... (invalid intersection)"
-                        return false
-                    end
-                end 
+                if(ray_result == false)
+                    return false
+                end
 
                 int = Intersection.new(ray_result[0],@room.returnLayerObject((ray_result[1][0]).layer().name()))
                 chain.add_segment(int) 
@@ -86,6 +70,58 @@ class Raytracer
 
                 self.traceRay(ray_result[0],reflect_direction,order+1,maxOrder,chain)
             end
+        end
+    end
+
+    def surface_raytest(ray_origin,ray_direction)
+        ray = [ray_origin, ray_direction]
+        ray_result = @model.raytest(ray)
+
+        if ray_result.nil?
+            # puts "Failed... Nil Class" 
+            return false 
+        end 
+
+        if !(ray_result.nil?)&&(ray_result[1][0].is_a? Sketchup::Face)
+            return ray_result
+        else
+            if(ray_result[1][0].is_a? Sketchup::ConstructionLine)
+                # if we keep hitting a construction line
+                while(ray_result[1][0].is_a? Sketchup::ConstructionLine) do
+                    ray = [ray_result[0], ray[1]]
+                    ray_result = @model.raytest(ray,false);
+                    return ray_result
+                end
+            else
+                # abort 
+                # puts "Failed... (invalid intersection)"
+                return false
+            end
+        end 
+    end
+
+    def valid_receiver_intersection(ray_origin, ray_direction)
+        if(@receiver.check_intersection(ray_origin,ray_direction))
+            receiver_distance = @receiver.returnDistanceToIntersection(ray_origin,ray_direction)
+
+            ray_result = self.surface_raytest(ray_origin,ray_direction)
+
+            if(ray_result == false)
+                return false
+            else 
+                surface_distance = (ray_result[0]).distance(ray_origin)
+
+                if(surface_distance < receiver_distance.min())
+                    # surface intersection
+                    return false 
+                elsif(surface_distance >= receiver_distance.min())
+                    return true 
+                else 
+                    return false  
+                end
+            end
+        else
+            return false
         end
     end
 

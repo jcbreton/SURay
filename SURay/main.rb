@@ -12,6 +12,9 @@ require_relative 'objects/material.rb'
 require_relative 'objects/layer.rb'
 require_relative 'objects/raypath.rb'
 
+# issues
+# - phantom rays detected when receiver is placed outside of model
+
 module JCB
   module SURay
 
@@ -33,6 +36,9 @@ module JCB
 
     def self.test
 
+      # todo: 
+      # - need to check for wall intersections in receiver collision checking
+
       model = Sketchup.active_model
 
       gypsum = Material.new("gypsum",0,[0.1,0.1,0.1,0.05,0.04,0.03,0.02],"me")
@@ -44,26 +50,25 @@ module JCB
       room = Room.new(model,[walls,floor])
       
       #Shoebox
-      #s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
+      s = Source.new("Test Source",Geom::Point3d.new(12,12,12),1)
       #r = Receiver.new("Test Radius",Geom::Point3d.new(14*12,10*12,20),12)
+      r = Receiver.new("Test Radius",Geom::Point3d.new(30*12,30*12,20),12)
 
       #Auditorium
-      s = Source.new("Test Source",Geom::Point3d.new(1.68*39.37,(6.39)*39.37,39.37),1)
-      r = Receiver.new("Test Radius",Geom::Point3d.new(17*39.37,12*39.37,2*39.37),12)
+      #s = Source.new("Test Source",Geom::Point3d.new(1.68*39.37,(6.39)*39.37,39.37),1)
+      #r = Receiver.new("Test Radius",Geom::Point3d.new(17*39.37,12*39.37,2*39.37),12)
 
       raytracer = Raytracer.new(room, s, r)
       
       t1 = Time.now
       
-      c = raytracer.find_definite(1000)
+      c = raytracer.find_definite(1)
       
       t2 = Time.now
       delta = t2 - t1 
       puts "Operation took #{delta} seconds."
 
       c.sort! { |a,b| a.arrivalTime(343) <=> b.arrivalTime(343)}
-      #c.sort_by(&:arrivalTime(343))
-
 
       # Write IR
       fs = 44100 
@@ -73,8 +78,9 @@ module JCB
       puts "---- Impulse Response Data ----"
       c.each do |c| 
         #puts "----"
-        c.getInfo
-        #c.plot()
+        c.getInfo()
+        c.plot()
+        c.printIntersections()
         irdata[(c.arrivalTime(343)*fs).floor()] = Audio_Math.coinflip()*c.arrivalEnergy(1,1000)
       end
 
